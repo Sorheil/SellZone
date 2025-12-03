@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spécification Logicielle - SellZone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 60px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .page-break {
+            page-break-after: always;
+            margin-bottom: 60px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .title-page {
+            text-align: center;
+            padding: 100px 0;
+            border-bottom: 2px solid #1F4788;
+        }
+        
+        .title-page h1 {
+            font-size: 36px;
+            color: #1F4788;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .title-page .subtitle {
+            font-size: 18px;
+            color: #555;
+            margin: 10px 0;
+        }
+        
+        .title-page .meta {
+            font-size: 12px;
+            color: #888;
+            margin-top: 50px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            color: #1F4788;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #1F4788;
+            padding-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        h2 {
+            font-size: 18px;
+            color: #2E5C8A;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        h3 {
+            font-size: 14px;
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+            font-size: 11pt;
+        }
+        
+        ul, ol {
+            margin-left: 40px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            font-size: 11pt;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 11pt;
+        }
+        
+        table th {
+            background-color: #1F4788;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #1F4788;
+        }
+        
+        table td {
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .toc {
+            margin: 40px 0;
+        }
+        
+        .toc-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1F4788;
+            margin-bottom: 20px;
+        }
+        
+        .toc-item {
+            margin-left: 20px;
+            margin-bottom: 10px;
+            font-size: 11pt;
+        }
+        
+        .toc-item.level2 {
+            margin-left: 40px;
+        }
+        
+        .toc-item.level3 {
+            margin-left: 60px;
+        }
+        
+        .section-num {
+            color: #666;
+            font-weight: bold;
+        }
+        
+        .info-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid #1F4788;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 11pt;
+        }
+        
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 11pt;
+        }
+        
+        strong {
+            font-weight: bold;
+        }
+        
+        em {
+            font-style: italic;
+        }
+        
+        .case-study {
+            background-color: #f0f0f0;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #1F4788;
+            font-size: 11pt;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 40px;
+                max-width: 100%;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<!-- PAGE DE TITRE -->
+<div class="title-page page-break">
+    <h1>DOSSIER DE SPÉCIFICATION LOGICIELLE</h1>
+    <p class="subtitle"><strong>Application SellZone E-Commerce</strong></p>
+    <p class="subtitle">Plateforme de vente en ligne pour petits commerçants</p>
+    <div class="meta">
+        <p><strong>Version :</strong> 1.0</p>
+        <p><strong>Date :</strong> 4 Novembre 2025</p>
+        <p><strong>Auteur :</strong> TCHOKOTHE SIEWE ARMEL SORHEIL</p>
+        <p><strong>Statut :</strong> Document de Référence</p>
+    </div>
+</div>
+
+<!-- TABLE DES MATIERES -->
+<div class="page-break">
+    <h1>TABLE DES MATIÈRES</h1>
+    <div class="toc">
+        <div class="toc-item"><span class="section-num">1</span> INTRODUCTION</div>
+        <div class="toc-item level2"><span class="section-num">1.1</span> But du document</div>
+        <div class="toc-item level2"><span class="section-num">1.2</span> Contexte de l'application</div>
+        <div class="toc-item level2"><span class="section-num">1.3</span> Documentation</div>
+        
+        <div class="toc-item"><span class="section-num">2</span> SPÉCIFICATIONS GÉNÉRALES</div>
+        <div class="toc-item level2"><span class="section-num">2.1</span> Présentation du logiciel</div>
+        <div class="toc-item level2"><span class="section-num">2.2</span> Contraintes opérationnelles</div>
+        <div class="toc-item level2"><span class="section-num">2.3</span> Contraintes de réalisation</div>
+        
+        <div class="toc-item"><span class="section-num">3</span> SPÉCIFICATIONS FONCTIONNELLES</div>
+        <div class="toc-item level2"><span class="section-num">3.1</span> Définition des acteurs</div>
+        <div class="toc-item level2"><span class="section-num">3.2</span> Vue d'ensemble des fonctionnalités</div>
+        <div class="toc-item level2"><span class="section-num">3.3</span> Cas d'utilisation</div>
+        <div class="toc-item level2"><span class="section-num">3.4</span> Modules fonctionnels</div>
+        
+        <div class="toc-item"><span class="section-num">4</span> SPÉCIFICATIONS D'INTERFACE</div>
+        <div class="toc-item level2"><span class="section-num">4.1</span> Interface Homme-Machine</div>
+        <div class="toc-item level2"><span class="section-num">4.2</span> Interfaces Logiciel/Logiciel</div>
+        
+        <div class="toc-item"><span class="section-num">5</span> TRAÇABILITÉ</div>
+    </div>
+</div>
+
+<!-- SECTION 1 : INTRODUCTION -->
+<div class="page-break">
+    <h1>1. INTRODUCTION</h1>
+    
+    <h2>1.1 But du document</h2>
+    <p>Ce document sert de guide complet de développement pour l'application <strong>SellZone</strong>. Il définit l'ensemble des spécifications fonctionnelles et techniques nécessaires à la réalisation du logiciel, en suivant une approche méthodologique structurée. Il constitue la référence commune entre le développeur et les parties prenantes.</p>
+    
+    <h2>1.2 Contexte de l'application</h2>
+    
+    <h3>1.2.1 Problématique et objectifs</h3>
+    <p>L'application SellZone est conçue pour servir de <strong>template/modèle standardisé</strong> de boutique e-commerce. Elle répond aux besoins croissants des petits commerçants qui souhaitent développer leur présence commerciale en ligne, mais qui manquent d'une plateforme simple et intégrée pour :</p>
+    <ul>
+        <li>Créer et gérer leur boutique en ligne de manière autonome</li>
+        <li>Vendre leurs produits ou services facilement</li>
+        <li>Gérer les commandes et les clients</li>
+        <li>Accroître leur chiffre d'affaires</li>
+    </ul>
+    
+    <h3>1.2.2 Modèle économique</h3>
+    <p>SellZone est avant tout un <strong>service de création de sites e-commerce</strong>. Le modèle économique repose sur :</p>
+    <ul>
+        <li><strong>Service principal :</strong> Création et personnalisation d'une boutique en ligne basée sur ce template</li>
+        <li><strong>Processus :</strong> À partir du template SellZone, chaque client (vendeur) reçoit une instance personnalisée du site</li>
+        <li><strong>Monétisation :</strong> Chaque nouvelle boutique créée génère des revenus pour le développeur/prestataire</li>
+    </ul>
+    
+    <h3>1.2.3 Portée et environnement</h3>
+    <ul>
+        <li><strong>Périmètre géographique :</strong> Contexte national (camerounais)</li>
+        <li><strong>Utilisateurs cibles (Vendeurs) :</strong> Petits commerçants de tous types (vêtements, épiceries, décoration, services, artisanat, etc.)</li>
+        <li><strong>Utilisateurs finaux (Acheteurs) :</strong> Clients en ligne souhaitant acheter les produits/services du vendeur</li>
+        <li><strong>Types de produits/services :</strong> Tous types de produits et services commercialisables (sauf variantes)</li>
+        <li><strong>Volume de catalogue :</strong> Catalogues simples de moins de 100 produits en moyenne</li>
+    </ul>
+    
+    <h3>1.2.4 Phase actuelle</h3>
+    <p>Ce document décrit la <strong>version 1.0 du template SellZone</strong>. À cette phase :</p>
+    <ul>
+        <li>Il s'agit d'une boutique e-commerce <strong>mono-vendeur</strong> (un seul commerçant par instance)</li>
+        <li>La plateforme elle-même n'est pas multi-clients à ce stade ; elle servira de base/modèle</li>
+        <li>Les évolutions futures (scalabilité, multi-clients, API, etc.) sont anticipées mais hors scope</li>
+    </ul>
+    
+    <h2>1.3 Documentation</h2>
+    
+    <h3>1.3.1 Documents applicables</h3>
+    <ul>
+        <li>Aucun document applicable</li>
+        <!-- <li>Normes de développement web (OWASP Top 10)</li>
+        <li>Normes d'accessibilité (WCAG 2.1)</li>
+        <li>Bonnes pratiques Spring Boot et Angular</li>
+        <li>Documentation AWS (déploiement cloud)</li> -->
+    </ul>
+    
+    <h3>1.3.2 Documents de référence</h3>
+    <ul>
+        <li>Aucun document de référence</li>
+        <!-- <li>Plan de développement initial (1-2 semaines)</li>
+        <li>Spécifications métier du contexte camerounais</li>
+        <li>Documentation des agrégateurs de paiement (Mobile Money, etc.)</li> -->
+    </ul>
+</div>
+
+<!-- SECTION 2 : SPÉCIFICATIONS GÉNÉRALES -->
+<div class="page-break">
+    <h1>2. SPÉCIFICATIONS GÉNÉRALES</h1>
+    
+    <h2>2.1 Présentation du logiciel</h2>
+    
+    <h3>2.1.1 Environnement du logiciel</h3>
+    
+    <p><strong>Architecture technique globale :</strong></p>
+    <ul>
+        <li><strong>Backend :</strong> Spring Boot (Java)</li>
+        <li><strong>Frontend :</strong> Angular (TypeScript)</li>
+        <li><strong>Base de données :</strong> PostgreSQL</li>
+        <li><strong>Cache :</strong> Redis (pour sessions et optimisations futures)</li>
+        <li><strong>Infrastructure :</strong> AWS (Cloud)</li>
+        <!-- <li><strong>Déploiement :</strong> Mono-région</li> -->
+    </ul>
+    
+    <p><strong>Contexte du système :</strong></p>
+    <table>
+        <tr>
+            <th>Entité externe</th>
+            <th>Interaction avec le système</th>
+        </tr>
+        <tr>
+            <td>Acheteur (Client)</td>
+            <td>Navigation, recherche produits, panier, paiement, suivi commandes</td>
+        </tr>
+        <tr>
+            <td>Vendeur (Admin boutique)</td>
+            <td>Gestion produits, suivi commandes, exports, configuration via dashboard</td>
+        </tr>
+        <tr>
+            <td>Agrégateur de paiement</td>
+            <td>Redirection pour Mobile Money, confirmation de paiement via webhook</td>
+        </tr>
+        <tr>
+            <td>Infrastructure AWS</td>
+            <td>Hébergement, base de données, cache, sécurité</td>
+        </tr>
+    </table>
+    
+    <h3>2.1.2 Description générale du logiciel</h3>
+    <p><strong>SellZone</strong> est une application web complète de e-commerce permettant :</p>
+    
+    <p><strong>Pour l'acheteur (Frontend) :</strong></p>
+    <ul>
+        <li>Consulter le catalogue de produits avec description, prix, images</li>
+        <li>Rechercher et filtrer les produits</li>
+        <li>Ajouter/retirer des produits au panier (panier persistant)</li>
+        <li>Voir la disponibilité des produits en temps réel</li>
+        <li>Créer un compte utilisateur et se connecter</li>
+        <li>Passer commande en ligne</li>
+        <li>Effectuer le paiement (Mobile Money ou paiement à la livraison)</li>
+        <li>Télécharger la facture électronique</li>
+        <li>Consulter l'historique de ses commandes</li>
+        <li>Laisser des avis et commentaires sur les produits</li>
+    </ul>
+    
+    <p><strong>Pour le vendeur (Backend/Dashboard) :</strong></p>
+    <ul>
+        <li>Créer, modifier, supprimer des produits</li>
+        <li>Gérer les images et descriptions des produits</li>
+        <li>Gérer les stocks (voir, mettre à jour)</li>
+        <li>Consulter un dashboard avec statistiques (nombre de commandes, chiffre d'affaires)</li>
+        <li>Consulter et gérer les commandes (changer les statuts)</li>
+        <li>Consulter l'historique des paiements</li>
+        <li>Exporter les données (commandes, clients, etc.)</li>
+        <li>Télécharger les factures</li>
+    </ul>
+    
+    <h2>2.2 Contraintes opérationnelles</h2>
+    
+    <h3>2.2.1 Performances</h3>
+    <ul>
+        <!-- <li><strong>Temps de réponse :</strong> Pages de navigation < 2 secondes (premiers chargements)</li>
+        <li><strong>Panier :</strong> Sauvegarde automatique sans délai perceptible</li>
+        <li><strong>Checkout :</strong> Processus fluide < 1 minute</li>
+        <li><strong>Dashboard vendeur :</strong> Chargement des stats < 3 secondes</li> -->
+        <li>pour le moment aucune Contraintes de Performances n'est d'actualité car pas encore repertori </li>
+    </ul>
+    
+    <h3>2.2.2 Installation et déploiement</h3>
+    <ul>
+        <li><strong>Environnement :</strong> Déploiement cloud sur AWS (conteneurisation Docker envisagée)</li>
+        <li><strong>Base de données :</strong> Migration SQL automatisée à chaque déploiement</li>
+    </ul>
+    
+    <h2>2.3 Contraintes de réalisation</h2>
+    
+    <h3>2.3.1 Contraintes structurelles</h3>
+    <ul>
+        <li><strong>Architecture :</strong> Séparation claire Backend/Frontend (REST API)</li>
+        <li><strong>Base de données :</strong> PostgreSQL avec migrations versionnées</li>
+        <li><strong>ORM :</strong> JPA/Hibernate pour la couche données</li>
+        <li><strong>Stateless :</strong> Backend stateless, sessions gérées via JWT + cookies</li>
+    </ul>
+    
+    <h3>2.3.2 Contraintes d'évolution</h3>
+    <ul>
+        <li>Le logiciel est conçu comme un <strong>template réutilisable</strong>, facilement adaptable pour de nouveaux clients</li>
+        <li>Possibilité de migration future vers une architecture multi-clients (marketplace)</li>
+        <li>Versioning des API REST dès le départ (v1, v2, etc.)</li>
+        <li>Structure de code modulaire pour faciliter maintenabilité et extensions</li>
+    </ul>
+    
+    <h3>2.3.3 Contraintes de développement</h3>
+    <ul>
+        <li><strong>Développeur :</strong> Actuellement seul développeur, mais structure anticipant du travail en équipe</li>
+        <li><strong>Délai :</strong> MVP à livrer en 1-2 semaines</li>
+        <li><strong>Stack :</strong> Spring Boot, Angular, PostgreSQL, AWS, Redis</li>
+        <li><strong>Méthodologie :</strong> Approche itérative, focus sur MVP fonctionnel</li>
+        <li><strong>Versioning :</strong> Git/GitHub pour le contrôle de source</li>
+    </ul>
+    
+    <h3>2.3.4 Contraintes de qualité</h3>
+    <ul>
+        <li><strong>Sécurité :</strong> Authentification JWT, chiffrement des données sensibles (mots de passe, paiements)</li>
+        <li><strong>Fiabilité :</strong> Gestion des erreurs robuste, messages clairs aux utilisateurs</li>
+        <li><strong>Testabilité :</strong> Tests unitaires et d'intégration pour les modules critiques (panier, paiement)</li>
+        <li><strong>Maintenabilité :</strong> Code bien structuré, commenté, followant les conventions</li>
+        <li><strong>Accessibilité :</strong> Interface responsive, compatibilité navigateurs modernes</li>
+    </ul>
+</div>
+
+<!-- SECTION 3 : SPÉCIFICATIONS FONCTIONNELLES -->
+<div class="page-break">
+    <h1>3. SPÉCIFICATIONS FONCTIONNELLES</h1>
+    
+    <h2>3.1 Définition des acteurs</h2>
+    
+    <p>L'application SellZone implique deux catégories principales d'acteurs :</p>
+    
+    <table>
+        <tr>
+            <th>Acteur</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><strong>Vendeur</strong></td>
+            <td>Propriétaire/administrateur de la boutique en ligne</td>
+        </tr>
+        <tr>
+            <td><strong>Acheteur</strong></td>
+            <td>Client final qui consulte et achète les produits</td>
+            
+        </tr>
+    </table>
+    
+    <h2>3.2 Vue d'ensemble des fonctionnalités</h2>
+    
+    <p><strong>Modules fonctionnels majeurs :</strong></p>
+    
+    <table>
+        <tr>
+            <th>Module</th>
+            <th>Description</th>
+            <th>Utilisateurs cibles</th>
+        </tr>
+        <tr>
+            <td><strong>Authentification & Comptes</strong></td>
+            <td>Inscription, connexion, renitialisation de mot de passe, gestion de profil</td>
+            <td>Vendeur, Acheteur</td>
+        </tr>
+        <tr>
+            <td><strong>Gestion de Catalogue</strong></td>
+            <td>CRUD produits, images, stocks, prix</td>
+            <td>Vendeur</td>
+        </tr>
+        <tr>
+            <td><strong>Panier & Commande</strong></td>
+            <td>Ajout/suppression articles, validation stocks, passage de commande</td>
+            <td>Acheteur</td>
+        </tr>
+        <tr>
+            <td><strong>Paiement</strong></td>
+            <td>Intégration agrégateur, Mobile Money, cash à la livraison</td>
+            <td>Acheteur</td>
+        </tr>
+        <tr>
+            <td><strong>Factures</strong></td>
+            <td>Génération, téléchargement factures PDF</td>
+            <td>Acheteur, Vendeur</td>
+        </tr>
+        <tr>
+            <td><strong>Gestion Commandes</strong></td>
+            <td>Suivi, changement de statuts</td>
+            <td>Vendeur</td>
+        </tr>
+        <tr>
+            <td><strong>Avis & Commentaires</strong></td>
+            <td>Publication d'avis et ou de commentaire</td>
+            <td>Acheteur, Vendeur</td>
+        </tr>
+        <tr>
+            <td><strong>Dashboard & Rapports</strong></td>
+            <td>Statistiques vendeur</td>
+            <td>Vendeur</td>
+        </tr>
+    </table>
+    
+    <h2>3.3 Cas d'utilisation</h2>
+    <!-- cas d'utilisation 1 -->
+     <h3>Cas d'utilisation : Créer un compte vendeur</h3>
+<!-- Partie 1 : Identification -->
+<table>
+    <tr>
+        <th>Élément</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><strong>Titre</strong></td>
+        <td>Créer un compte vendeur</td>
+    </tr>
+    <tr>
+        <td><strong>Résumé</strong></td>
+        <td>Ce cas d'utilisation permet à un vendeur de s'inscrire sur la plateforme SellZone et d'accéder à son espace vendeur.</td>
+    </tr>
+    <tr>
+        <td><strong>Acteur principal</strong></td>
+        <td>Vendeur</td>
+    </tr>
+    <tr>
+        <td><strong>Acteurs secondaires</strong></td>
+        <td>Système (pour la validation et la confirmation email)</td>
+    </tr>
+    <tr>
+        <td><strong>Date</strong></td>
+        <td>05/11/2025</td>
+    </tr>
+    <tr>
+        <td><strong>Responsable</strong></td>
+        <td>TCHOKOTHE SIEWE ARMEL SORHEIL</td>
+    </tr>
+    <tr>
+        <td><strong>Version</strong></td>
+        <td>1.0</td>
+    </tr>
+</table>
+
+<!-- Partie 2 : Description des scénarios -->
+<h4>Description des scénarios</h4>
+<table>
+    <tr>
+        <td><strong>Préconditions</strong></td>
+        <td>
+            <ul>
+                <li>Le vendeur possède un lien spécial d’inscription.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Scénario nominal</strong></td>
+        <td>
+            <ol>
+                <li>Le vendeur clique sur le lien d'inscription.</li>
+                <li>Le système affiche le formulaire d'inscription vendeur.</li>
+                <li>Le vendeur renseigne son nom d'utilisateur, email, mot de passe, confirmation du mot de passe.</li>
+                <li>Le vendeur soumet le formulaire.</li>
+                <li>Le système valide les informations (formats, unicité, correspondance des mots de passe).</li>
+                <li>Si tout est valide, le compte est créé et un email de confirmation est envoyé.</li>
+                <li><strong>Le vendeur ouvre sa boîte email, clique sur le lien de validation pour activer son compte.</strong></li>
+                <li>Le vendeur reçoit un message de succès.</li>
+            </ol>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Scénarios alternatifs</strong></td>
+        <td>
+            <ul>
+                <li>Si les mots de passe ne correspondent pas : le système affiche une erreur.</li>
+                <li>Si l’email ou le nom d'utilisateur existe déjà : le système propose d’en choisir un autre.</li>
+                <li>Si l’email est invalide : message de correction demandé.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Postconditions</strong></td>
+        <td>
+            <ul>
+                <li>Le compte vendeur est enregistré et activé.</li>
+                <li>Le vendeur peut se connecter avec ses identifiants.</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<h3>Cas d'utilisation : Connexion d'un vendeur</h3>
+<!-- Partie 1 : Identification -->
+<table>
+    <tr>
+        <th>Élément</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><strong>Titre</strong></td>
+        <td>Connexion d'un vendeur</td>
+    </tr>
+    <tr>
+        <td><strong>Résumé</strong></td>
+        <td>Ce cas d'utilisation permet à un vendeur qui possède un compte valide de se connecter à la plateforme SellZone pour accéder à son espace vendeur.</td>
+    </tr>
+    <tr>
+        <td><strong>Acteur principal</strong></td>
+        <td>Vendeur</td>
+    </tr>
+    <tr>
+        <td><strong>Acteurs secondaires</strong></td>
+        <td>Aucun</td>
+    </tr>
+    <tr>
+        <td><strong>Date</strong></td>
+        <td>05/11/2025</td>
+    </tr>
+    <tr>
+        <td><strong>Responsable</strong></td>
+        <td>TCHOKOTHE SIEWE ARMEL SORHEIL</td>
+    </tr>
+    <tr>
+        <td><strong>Version</strong></td>
+        <td>1.0</td>
+    </tr>
+</table>
+
+<!-- Partie 2 : Description des scénarios -->
+<h4>Description des scénarios</h4>
+<table>
+    <tr>
+        <td><strong>Préconditions</strong></td>
+        <td>
+            <ul>
+                <li>Le vendeur possède un compte enregistré et activé.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Scénario nominal</strong></td>
+        <td>
+            <ol>
+                <li>Le vendeur saisit son email et son mot de passe.</li>
+                <li>Le vendeur soumet le formulaire de connexion.</li>
+                <li>Le système vérifie la correspondance des identifiants.</li>
+                <li>Si les identifiants sont valides, le système crée une session pour le vendeur.</li>
+                <li>Le vendeur est redirigé vers son espace vendeur.</li>
+            </ol>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Scénarios alternatifs</strong></td>
+        <td>
+            <ul>
+                <li>Si les identifiants sont incorrects, le système affiche un message d'erreur et invite à réessayer.</li>
+                <li>Si le compte n'est pas activé, le système informe le vendeur et propose de renvoyer un email de validation.</li>
+                <li>Si le vendeur a oublié son mot de passe, le système propose une procédure de réinitialisation.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Postconditions</strong></td>
+        <td>
+            <ul>
+                <li>Le vendeur est connecté et authentifié.</li>
+                <li>Le vendeur a accès à son espace personnel sécurisé.</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<h3>Cas d'utilisation : Gestion du profil vendeur</h3>
+<!-- Partie 1 : Identification -->
+<table>
+    <tr>
+        <th>Élément</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><strong>Titre</strong></td>
+        <td>Gestion du profil vendeur</td>
+    </tr>
+    <tr>
+        <td><strong>Résumé</strong></td>
+        <td>Ce cas d'utilisation permet au vendeur de consulter et modifier les informations de son profil personnel.</td>
+    </tr>
+    <tr>
+        <td><strong>Acteur principal</strong></td>
+        <td>Vendeur</td>
+    </tr>
+    <tr>
+        <td><strong>Acteurs secondaires</strong></td>
+        <td>Aucun</td>
+    </tr>
+    <tr>
+        <td><strong>Date</strong></td>
+        <td>05/11/2025</td>
+    </tr>
+    <tr>
+        <td><strong>Responsable</strong></td>
+        <td>TCHOKOTHE SIEWE ARMEL SORHEIL</td>
+    </tr>
+    <tr>
+        <td><strong>Version</strong></td>
+        <td>1.0</td>
+    </tr>
+</table>
+
+<!-- Partie 2 : Description des scénarios -->
+<h4>Description des scénarios</h4>
+<table>
+    <tr>
+        <td><strong>Préconditions</strong></td>
+        <td>
+            <ul>
+                <li>Le vendeur est connecté à son compte et possède un compte enregistré et activé.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Scénario nominal</strong></td>
+        <td>
+            <ol>
+                <li>Le vendeur accède à la page de gestion de profil.</li>
+                <li>Le système affiche les informations actuelles du profil.</li>
+                <li>Le vendeur modifie les champs souhaités (nom d'utilisateur, email).</li>
+                <li>Le vendeur soumet les modifications.</li>
+                <li>Le système valide les données saisies (format, unicité pour email.).</li>
+                <li>Le système enregistre les modifications apportées au profil.</li>
+                <li>Le vendeur reçoit un message de confirmation de mise à jour.</li>
+            </ol>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Scénarios alternatifs</strong></td>
+        <td>
+            <ul>
+                <li>Si le format des données est invalide, le système affiche un message d’erreur et demande correction.</li>
+                <li>Si l’email modifié existe déjà, le système refuse et demande un autre email.</li>
+                <li>Si le vendeur annule la modification, aucune donnée n’est changée.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Postconditions</strong></td>
+        <td>
+            <ul>
+                <li>Les nouvelles informations du profil sont enregistrées dans le système.</li>
+                <li>Le vendeur peut utiliser ses nouvelles informations immédiatement.</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<h3>Cas d'utilisation : Réinitialisation du mot de passe</h3>
+<!-- Partie 1 : Identification -->
+<table>
+    <tr>
+        <th>Élément</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><strong>Titre</strong></td>
+        <td>Réinitialisation du mot de passe</td>
+    </tr>
+    <tr>
+        <td><strong>Résumé</strong></td>
+        <td>Ce cas d'utilisation permet à un vendeur qui a oublié son mot de passe de le réinitialiser grâce à son adresse email.</td>
+    </tr>
+    <tr>
+        <td><strong>Acteur principal</strong></td>
+        <td>Vendeur</td>
+    </tr>
+    <tr>
+        <td><strong>Acteurs secondaires</strong></td>
+        <td>systeme de reception de mail</td>
+    </tr>
+    <tr>
+        <td><strong>Date</strong></td>
+        <td>05/11/2025</td>
+    </tr>
+    <tr>
+        <td><strong>Responsable</strong></td>
+        <td>TCHOKOTHE SIEWE ARMEL SORHEIL</td>
+    </tr>
+    <tr>
+        <td><strong>Version</strong></td>
+        <td>1.0</td>
+    </tr>
+</table>
+
+<!-- Partie 2 : Description des scénarios -->
+<h4>Description des scénarios</h4>
+<table>
+    <tr>
+        <td><strong>Préconditions</strong></td>
+        <td>
+            <ul>
+                <li>Le vendeur possède un compte enregistré avec une adresse email valide.</li>
+                <li>Le vendeur a oublié ou souhaite changer son mot de passe.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Scénario nominal</strong></td>
+        <td>
+            <ol>
+                <li>Le vendeur accède à la page de récupération de mot de passe.</li>
+                <li>Le vendeur saisit son adresse email enregistrée.</li>
+                <li>Le vendeur soumet la demande de réinitialisation.</li>
+                <li>Le système vérifie l'existence de l'email dans la base.</li>
+                <li>Le système génère un lien sécurisé de réinitialisation et l'envoie par email au vendeur.</li>
+                <li>Le vendeur consulte sa boîte email et clique sur le lien de réinitialisation.</li>
+                <li>Le système affiche un formulaire pour saisir un nouveau mot de passe et sa confirmation.</li>
+                <li>Le vendeur saisit et soumet son nouveau mot de passe.</li>
+                <li>Le système valide la correspondance des mots de passe et met à jour le mot de passe dans la base.</li>
+                <li>Le vendeur reçoit un message de confirmation de la mise à jour.</li>
+            </ol>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Scénarios alternatifs</strong></td>
+        <td>
+            <ul>
+                <li>Si l'email n'existe pas, un message d'erreur est affiché sans révéler l'absence dans la base.</li>
+                <li>Si le lien de réinitialisation est expiré ou invalide, le vendeur est invité à refaire la demande.</li>
+                <li>Si les mots de passe ne correspondent pas, un message d'erreur demande une correction.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Postconditions</strong></td>
+        <td>
+            <ul>
+                <li>Le mot de passe du vendeur est mis à jour et actif.</li>
+                <li>Le vendeur peut se connecter avec son nouveau mot de passe.</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+    
+    <h3>Cas d'utilisation 5 : Consulter le dashboard vendeur</h3>
+    <table>
+        <tr>
+            <th>Élément</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><strong>Acteur primaire</strong></td>
+            <td>Vendeur</td>
+        </tr>
+        <tr>
+            <td><strong>Préconditions</strong></td>
+            <td>Vendeur connecté</td>
+        </tr>
+        <tr>
+            <td><strong>Flux principal</strong></td>
+            <td>
+                1. Vendeur accède au dashboard<br/>
+                2. Système affiche les statistiques :<br/>
+                   - Nombre de commandes (ce mois, total)<br/>
+                   - Chiffre d'affaires<br/>
+                   - Dernières commandes<br/>
+                   - Produits les plus vendus<br/>
+                3. Vendeur peut consulter les sections (Produits, Commandes, etc.)
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Flux alternatif</strong></td>
+            <td>
+                - Aucune données : affichage "Pas de données"<br/>
+                - Erreur de chargement : message et retry
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Postconditions</strong></td>
+            <td>Dashboard affiché avec les données à jour</td>
+        </tr>
+    </table>
+    
+    <h3>Cas d'utilisation 6 : Laisser un avis sur un produit</h3>
+    <table>
+        <tr>
+            <th>Élément</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><strong>Acteur primaire</strong></td>
+            <td>Acheteur</td>
+        </tr>
+        <tr>
+            <td><strong>Préconditions</strong></td>
+            <td>Acheteur consulte une fiche produit</td>
+        </tr>
+        <tr>
+            <td><strong>Flux principal</strong></td>
+            <td>
+                1. Acheteur clique sur "Laisser un avis"<br/>
+                2. Affichage du formulaire (note, commentaire)<br/>
+                3. Acheteur remplit le formulaire<br/>
+                4. Avis publié directement (pas de modération initiale)<br/>
+                5. Confirmation d'ajout
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Flux alternatif</strong></td>
+            <td>
+                - Commentaire vide : accepté (note seule)<br/>
+                - Contenu spam/offensant : modération manuelle par vendeur<br/>
+                - Même acheteur, plusieurs avis : autorisé
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Postconditions</strong></td>
+            <td>Avis publié et visible sur la fiche produit</td>
+        </tr>
+    </table>
+    
+    <h2>3.4 Modules fonctionnels détaillés</h2>
+    
+    <h3>Module 1 : Authentification et Gestion Utilisateurs</h3>
+    
+    <h4>1.1 Fonction : Inscription Acheteur</h4>
+    <p><strong>Présentation :</strong> Permet à un nouvel acheteur de créer un compte pour accéder à toutes les fonctionnalités de la boutique.</p>
+    <p><strong>Entrées :</strong></p>
+    <ul>
+        <li>Email (unique)</li>
+        <li>Nom</li>
+        <li>Prénom</li>
+        <li>Mot de passe (minimum 8 caractères)</li>
+        <li>Confirmation mot de passe</li>
+    </ul>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Validation des données (format email, longueur mot de passe, correspondance des mots de passe)</li>
+        <li>Vérification unicité de l'email</li>
+        <li>Hachage du mot de passe (bcrypt ou similaire)</li>
+        <li>Création de l'entité utilisateur en base</li>
+        <li>Génération JWT pour session automatique</li>
+    </ul>
+    <p><strong>Sorties :</strong></p>
+    <ul>
+        <li>Compte créé avec ID unique</li>
+        <li>JWT retourné pour connexion automatique</li>
+        <li>Message de confirmation</li>
+    </ul>
+    
+    <h4>1.2 Fonction : Connexion</h4>
+    <p><strong>Présentation :</strong> Authentifie un utilisateur (acheteur ou vendeur) via email et mot de passe.</p>
+    <p><strong>Entrées :</strong></p>
+    <ul>
+        <li>Email</li>
+        <li>Mot de passe</li>
+    </ul>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Recherche utilisateur par email</li>
+        <li>Vérification du mot de passe (bcrypt compare)</li>
+        <li>Génération JWT + cookie HTTP-only sécurisé</li>
+        <li>Enregistrement dernière connexion</li>
+    </ul>
+    <p><strong>Sorties :</strong></p>
+    <ul>
+        <li>JWT et cookie d'authentification</li>
+        <li>Informations utilisateur (email, rôle, etc.)</li>
+        <li>Statut : succès ou erreur (identifiants invalides)</li>
+    </ul>
+    
+    <h4>1.3 Fonction : Déconnexion</h4>
+    <p><strong>Présentation :</strong> Termine la session de l'utilisateur.</p>
+    <p><strong>Entrées :</strong> JWT/Cookie utilisateur</p>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Invalidation du JWT</li>
+        <li>Suppression du cookie</li>
+    </ul>
+    <p><strong>Sorties :</strong> Confirmation de déconnexion</p>
+    
+    <h3>Module 2 : Gestion du Catalogue (Produits)</h3>
+    
+    <h4>2.1 Fonction : Créer un produit</h4>
+    <p><strong>Présentation :</strong> Le vendeur crée un nouveau produit dans son catalogue.</p>
+    <p><strong>Entrées :</strong></p>
+    <ul>
+        <li>Nom du produit</li>
+        <li>Description</li>
+        <li>Prix (en devise locale)</li>
+        <li>Quantité en stock</li>
+        <li>Images (1 principale, optionnelles additionnelles)</li>
+        <li>Catégorie (optionnel pour V1)</li>
+    </ul>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Validation des données obligatoires</li>
+        <li>Upload et stockage des images (AWS S3 ou équivalent)</li>
+        <li>Création de l'enregistrement produit</li>
+        <li>Génération d'ID unique et slug URL-friendly</li>
+        <li>Indexation pour recherche</li>
+    </ul>
+    <p><strong>Sorties :</strong></p>
+    <ul>
+        <li>Produit créé avec ID</li>
+        <li>URL d'accès au produit</li>
+        <li>Confirmation et redirection</li>
+    </ul>
+    
+    <h4>2.2 Fonction : Modifier un produit</h4>
+    <p><strong>Présentation :</strong> Le vendeur met à jour les informations d'un produit existant.</p>
+    <p><strong>Entrées :</strong> ID produit + champs à modifier (nom, description, prix, stock, images)</p>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Vérification des permissions (propriétaire de la boutique)</li>
+        <li>Validation des nouvelles données</li>
+        <li>Mise à jour en base</li>
+        <li>Gestion des images : upload nouvelles, suppression anciennes</li>
+    </ul>
+    <p><strong>Sorties :</strong> Produit mis à jour, confirmation</p>
+    
+    <h4>2.3 Fonction : Supprimer un produit</h4>
+    <p><strong>Présentation :</strong> Le vendeur supprime définitivement un produit.</p>
+    <p><strong>Entrées :</strong> ID produit</p>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Soft delete (marquage logique) ou hard delete</li>
+        <li>Suppression des images associées</li>
+        <li>Suppression des avis associés (optionnel : archivage)</li>
+    </ul>
+    <p><strong>Sorties :</strong> Confirmation suppression</p>
+    
+    <h4>2.4 Fonction : Lister les produits (Acheteur)</h4>
+    <p><strong>Présentation :</strong> Affiche le catalogue de produits disponibles.</p>
+    <p><strong>Entrées :</strong></p>
+    <ul>
+        <li>Page (pagination)</li>
+        <li>Terme de recherche (optionnel)</li>
+        <li>Filtres (prix min/max, etc.)</li>
+    </ul>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Requête en base avec pagination (ex. 20 produits par page)</li>
+        <li>Recherche texte sur nom/description si terme fourni</li>
+        <li>Filtrage et tri</li>
+        <li>Inclusion des avis et note moyenne</li>
+    </ul>
+    <p><strong>Sorties :</strong> Liste paginée des produits avec détails (image miniature, prix, note moyenne)</p>
+    
+    <h4>2.5 Fonction : Consulter détails produit</h4>
+    <p><strong>Présentation :</strong> Affiche la fiche complète d'un produit.</p>
+    <p><strong>Entrées :</strong> ID ou slug produit</p>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Récupération produit + images + avis</li>
+        <li>Calcul note moyenne des avis</li>
+        <li>Vérification disponibilité stock</li>
+    </ul>
+    <p><strong>Sorties :</strong> Fiche produit complète (nom, description longue, images, prix, stock, avis, bouton "Ajouter au panier" actif/inactif)</p>
+    
+    <h3>Module 3 : Panier et Commandes</h3>
+    
+    <h4>3.1 Fonction : Ajouter au panier</h4>
+    <p><strong>Présentation :</strong> Ajoute un produit au panier de l'acheteur.</p>
+    <p><strong>Entrées :</strong></p>
+    <ul>
+        <li>ID produit</li>
+        <li>Quantité (par défaut 1)</li>
+        <li>Session acheteur</li>
+    </ul>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Vérification stock disponible</li>
+        <li>Recherche produit en panier</li>
+        <li>Si existe : incrémenter quantité</li>
+        <li>Si n'existe pas : ajouter nouvelle ligne</li>
+        <li>Calcul total panier</li>
+        <li>Persistance panier (base de données ou Redis)</li>
+    </ul>
+    <p><strong>Sorties :</strong> Panier mis à jour, message de confirmation</p>
+    
+    <h4>3.2 Fonction : Retirer du panier</h4>
+    <p><strong>Présentation :</strong> Supprime un produit du panier.</p>
+    <p><strong>Entrées :</strong> ID produit dans le panier</p>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Suppression de la ligne panier</li>
+        <li>Recalcul total</li>
+        <li>Persistance</li>
+    </ul>
+    <p><strong>Sorties :</strong> Panier mise à jour, confirmation</p>
+    
+    <h4>3.3 Fonction : Consulter panier</h4>
+    <p><strong>Présentation :</strong> Affiche le contenu du panier actuel.</p>
+    <p><strong>Entrées :</strong> Session acheteur</p>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Récupération panier persisté</li>
+        <li>Vérification stock en temps réel pour chaque article</li>
+        <li>Recalcul total (prix unitaire × quantité)</li>
+    </ul>
+    <p><strong>Sorties :</strong> Panier avec articles, sous-total, total</p>
+    
+    <h4>3.4 Fonction : Créer une commande</h4>
+    <p><strong>Présentation :</strong> Valide le panier et crée une commande.</p>
+    <p><strong>Entrées :</strong></p>
+    <ul>
+        <li>Panier complet</li>
+        <li>Mode de paiement (Mobile Money ou Cash à la livraison)</li>
+        <li>Informations acheteur (email, adresse de livraison si nécessaire)</li>
+    </ul>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Vérification finale stock pour chaque article</li>
+        <li>Diminution du stock en base</li>
+        <li>Création de la commande avec numéro unique</li>
+        <li>Statut initial : "En attente" (paiement non confirmé)</li>
+        <li>Enregistrement du montant total</li>
+        <li>Création de la facture électronique</li>
+        <li>Si Mobile Money : génération lien de paiement (appel agrégateur)</li>
+        <li>Vidage du panier</li>
+    </ul>
+    <p><strong>Sorties :</strong></p>
+    <ul>
+        <li>Commande créée avec ID unique</li>
+        <li>Si Mobile Money : URL de paiement (redirection)</li>
+        <li>Si Cash : confirmation et message "Paiement à la livraison"</li>
+        <li>Facture générée</li>
+    </ul>
+    
+    <h4>3.5 Fonction : Consulter historique commandes</h4>
+    <p><strong>Présentation :</strong> L'acheteur consulte ses commandes passées.</p>
+    <p><strong>Entrées :</strong> ID acheteur</p>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Requête des commandes de cet acheteur</li>
+        <li>Tri par date décroissante</li>
+        <li>Inclusion du statut et du montant</li>
+    </ul>
+    <p><strong>Sorties :</strong> Liste des commandes avec détails (numéro, date, statut, montant, lien pour télécharger facture)</p>
+    
+    <h3>Module 4 : Paiement et Facturation</h3>
+    
+    <h4>4.1 Fonction : Traiter paiement Mobile Money</h4>
+    <p><strong>Présentation :</strong> Gère les paiements via agrégateur de paiement (Mobile Money).</p>
+    <p><strong>Entrées :</strong></p>
+    <ul>
+        <li>ID commande</li>
+        <li>Montant à payer</li>
+        <li>Numéro téléphone acheteur</li>
+    </ul>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Appel API agrégateur pour générer lien de paiement</li>
+        <li>Redirection acheteur vers agrégateur (lien externe)</li>
+        <li>Attente confirmation (webhook depuis agrégateur)</li>
+        <li>À la confirmation : mise à jour statut commande "Confirmée"</li>
+        <li>Enregistrement de la transaction</li>
+    </ul>
+    <p><strong>Sorties :</strong> Lien de paiement externe ou confirmation de paiement reçue</p>
+    
+    <h4>4.2 Fonction : Traiter paiement Cash à la livraison</h4>
+    <p><strong>Présentation :</strong> Crée une commande avec paiement différé à la livraison.</p>
+    <p><strong>Entrées :</strong> ID commande</p>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Commande créée avec statut "En attente"</li>
+        <li>Enregistrement mode de paiement "Cash"</li>
+        <li>Pas de redirection de paiement</li>
+    </ul>
+    <p><strong>Sorties :</strong> Commande enregistrée, message confirmatif au client</p>
+    
+    <h4>4.3 Fonction : Générer facture électronique</h4>
+    <p><strong>Présentation :</strong> Crée une facture PDF pour la commande.</p>
+    <p><strong>Entrées :</strong> ID commande</p>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Récupération données commande, articles, acheteur, vendeur</li>
+        <li>Génération PDF avec :</li>
+        <ul>
+            <li>En-tête avec infos boutique (logo, adresse, etc.)</li>
+            <li>Numéro facture, date, numéro de commande</li>
+            <li>Informations acheteur</li>
+            <li>Détail des articles (nom, quantité, prix unitaire, sous-total)</li>
+            <li>Total TTC (TVA si applicable)</li>
+            <li>Mode de paiement</li>
+        </ul>
+        <li>Stockage du PDF</li>
+    </ul>
+    <p><strong>Sorties :</strong> Fichier PDF facture téléchargeable</p>
+    
+    <h4>4.4 Fonction : Télécharger facture</h4>
+    <p><strong>Présentation :</strong> Permet à l'acheteur de télécharger la facture de sa commande.</p>
+    <p><strong>Entrées :</strong> ID commande</p>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Vérification permissions (propriétaire de la commande)</li>
+        <li>Récupération du PDF généré</li>
+        <li>Envoi en téléchargement (Content-Disposition: attachment)</li>
+    </ul>
+    <p><strong>Sorties :</strong> PDF téléchargé</p>
+    
+    <h3>Module 5 : Gestion des Commandes (Vendeur)</h3>
+    
+    <h4>5.1 Fonction : Consulter les commandes</h4>
+    <p><strong>Présentation :</strong> Le vendeur voit toutes les commandes passées à sa boutique.</p>
+    <p><strong>Entrées :</strong> Filtres optionnels (statut, date, acheteur)</p>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Requête des commandes de cette boutique</li>
+        <li>Filtrage selon critères</li>
+        <li>Tri par date décroissante</li>
+        <li>Pagination</li>
+    </ul>
+    <p><strong>Sorties :</strong> Liste des commandes avec numéro, date, acheteur, montant, statut</p>
+    
+    <h4>5.2 Fonction : Détails commande</h4>
+    <p><strong>Présentation :</strong> Affiche le détail complet d'une commande.</p>
+    <p><strong>Entrées :</strong> ID commande</p>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Récupération commande + articles + info acheteur</li>
+        <li>Calcul totaux</li>
+    </ul>
+    <p><strong>Sorties :</strong> Fiche commande complète (articles, montants, adresse livraison si fournie, statut, mode de paiement)</p>
+    
+    <h4>5.3 Fonction : Changer statut commande</h4>
+    <p><strong>Présentation :</strong> Le vendeur met à jour le statut de la commande.</p>
+    <p><strong>Entrées :</strong></p>
+    <ul>
+        <li>ID commande</li>
+        <li>Nouveau statut (En attente → Confirmée → Livrée)</li>
+    </ul>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Validation de la transition de statut</li>
+        <li>Mise à jour en base</li>
+        <li>Enregistrement de l'historique de changement</li>
+        <li>Notification acheteur (optionnel pour V1)</li>
+    </ul>
+    <p><strong>Sorties :</strong> Statut mis à jour, confirmation</p>
+    
+    <h4>5.4 Fonction : Exporter les commandes</h4>
+    <p><strong>Présentation :</strong> Le vendeur exporte la liste des commandes en CSV ou Excel.</p>
+    <p><strong>Entrées :</strong> Filtres optionnels, format d'export (CSV/Excel)</p>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Récupération données commandes avec filtres</li>
+        <li>Génération fichier (CSV ou XLSX)</li>
+        <li>Formatage des colonnes</li>
+    </ul>
+    <p><strong>Sorties :</strong> Fichier téléchargeable</p>
+    
+    <h3>Module 6 : Avis et Commentaires</h3>
+    
+    <h4>6.1 Fonction : Laisser un avis</h4>
+    <p><strong>Présentation :</strong> L'acheteur publie un avis sur un produit.</p>
+    <p><strong>Entrées :</strong></p>
+    <ul>
+        <li>ID produit</li>
+        <li>Note (1-5 étoiles)</li>
+        <li>Commentaire (texte libre, optionnel)</li>
+    </ul>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Validation note (1-5)</li>
+        <li>Validation commentaire (longueur max, caractères spéciaux)</li>
+        <li>Création de l'avis en base</li>
+        <li>Publication immédiate (pas de modération initiale)</li>
+        <li>Recalcul note moyenne du produit</li>
+    </ul>
+    <p><strong>Sorties :</strong> Avis publié, confirmation, affichage immédiat</p>
+    
+    <h4>6.2 Fonction : Lister les avis d'un produit</h4>
+    <p><strong>Présentation :</strong> Affiche tous les avis d'un produit.</p>
+    <p><strong>Entrées :</strong> ID produit, pagination</p>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Récupération avis du produit</li>
+        <li>Tri par date décroissante</li>
+        <li>Pagination</li>
+        <li>Calcul note moyenne</li>
+    </ul>
+    <p><strong>Sorties :</strong> Liste des avis avec auteur (anonyme ou pseudo), note, commentaire, date</p>
+    
+    <h4>6.3 Fonction : Modérer un avis (Vendeur)</h4>
+    <p><strong>Présentation :</strong> Le vendeur peut supprimer un avis inapproprié.</p>
+    <p><strong>Entrées :</strong> ID avis, raison de suppression (optionnel)</li>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Vérification permissions (propriétaire du produit)</li>
+        <li>Soft delete ou hard delete de l'avis</li>
+        <li>Recalcul note moyenne</li>
+    </ul>
+    <p><strong>Sorties :</strong> Avis supprimé, confirmation</p>
+    
+    <h3>Module 7 : Dashboard Vendeur</h3>
+    
+    <h4>7.1 Fonction : Afficher dashboard</h4>
+    <p><strong>Présentation :</strong> Page d'accueil du vendeur avec aperçu des statistiques.</p>
+    <p><strong>Entrées :</strong> ID vendeur</p>
+    <p><strong>Traitements :</strong></p>
+    <ul>
+        <li>Calcul nombre de commandes (ce mois, total)</li>
+        <li>Calcul chiffre d'affaires (ce mois, total)</li>
+        <li>Récupération dernières commandes (5 dernières)</li>
+        <li>Identification produits les plus vendus</li>
+        <li>Nombre de produits actifs</li>
+    </ul>
+    <p><strong>Sorties :</strong> Dashboard avec cartes et graphiques (widgets)</p>
+</div>
+
+<!-- SECTION 4 : SPÉCIFICATIONS D'INTERFACE -->
+<div class="page-break">
+    <h1>4. SPÉCIFICATIONS D'INTERFACE</h1>
+    
+    <h2>4.1 Interface Homme-Machine (IHM)</h2>
+    
+    <h3>4.1.1 Vue d'ensemble et principes de conception</h3>
+    <p>L'application SellZone est une <strong>application web responsive</strong> accessible via navigateur standard. Les principes de conception sont :</p>
+    <ul>
+        <li><strong>Simplicité :</strong> Interface épurée, facile d'utilisation pour les commerçants non-tech</li>
+        <li><strong>Responsive :</strong> Adaptée à tous les appareils (desktop, tablette, mobile)</li>
+        <li><strong>Performance :</strong> Chargement rapide, animations fluides</li>
+        <li><strong>Accessibilité :</strong> Contraste suffisant, textes lisibles, navigation au clavier</li>
+        <li><strong>Cohérence :</strong> Même thème et navigation partout</li>
+    </ul>
+    
+    <h3>4.1.2 Structure générale de l'interface</h3>
+    
+    <h4>Pour l'acheteur :</h4>
+    <ul>
+        <li><strong>Barre de navigation :</strong> Logo/nom boutique, recherche, panier (avec badge nombre articles), connexion/profil</li>
+        <li><strong>Page d'accueil :</strong> Hero section (image + titre), catalogue de produits en grille, footer avec infos boutique</li>
+        <li><strong>Fiche produit :</strong> Images, description, prix, stock, bouton ajouter au panier, section avis</li>
+        <li><strong>Panier :</strong> Liste articles, quantités modifiables, total, bouton "Procéder"</li>
+        <li><strong>Checkout :</strong> Résumé commande, choix mode de paiement, confirmation</li>
+        <li><strong>Historique commandes :</strong> Tableau avec statuts, montants, liens factures</li>
+    </ul>
+    
+    <h4>Pour le vendeur :</h4>
+    <ul>
+        <li><strong>Dashboard :</strong> Cartes statistiques, graphiques, dernières commandes, raccourcis</li>
+        <li><strong>Gestion produits :</strong> Tableau des produits, CRUD, bulk edit</li>
+        <li><strong>Gestion commandes :</strong> Tableau des commandes, filtres, détails, changement statut</li>
+        <li><strong>Barre latérale :</strong> Menu de navigation (Dashboard, Produits, Commandes, Avis, Exports, Profil)</li>
+    </ul>
+    
+    <h3>4.1.3 Enchaînement des fenêtres et flux de navigation</h3>
+    
+    <h4>Flux acheteur :</h4>
+    <ol>
+        <li>Accueil → Parcourir catalogue (recherche/filtres optionnels)</li>
+        <li>Fiche produit → Ajouter au panier</li>
+        <li>Panier → Modifier quantités / Retirer articles</li>
+        <li>Panier → Procéder à la commande</li>
+        <li>Checkout → Choisir mode paiement (Mobile Money ou Cash)</li>
+        <li>Si Mobile Money → Redirection agrégateur → Retour après paiement</li>
+        <li>Confirmation commande → Télécharger facture</li>
+        <li>Historique commandes → Consulter statuts et factures</li>
+    </ol>
+    
+    <h4>Flux vendeur :</h4>
+    <ol>
+        <li>Connexion dashboard → Dashboard principal</li>
+        <li>Dashboard → Gestion Produits / Gestion Commandes / Avis</li>
+        <li>Gestion Produits → CRUD produits</li>
+        <li>Gestion Commandes → Détails commande → Changer statut</li>
+        <li>Avis → Modérer avis inappropriés</li>
+        <li>Exports → Télécharger données (CSV/Excel)</li>
+    </ol>
+    
+    <h3>4.1.4 Contraintes d'utilisation et conditions particulières</h3>
+    
+    <ul>
+        <li><strong>Validation en temps réel :</strong> Les formulaires (inscription, création produit) affichent des messages d'erreur en temps réel</li>
+        <li><strong>Confirmation destructives :</strong> Avant suppression produit ou avis, modal de confirmation</li>
+        <li><strong>Panier persistant :</strong> Même après fermeture navigateur, le panier se restaure (session)</li>
+        <li><strong>Stock en temps réel :</strong> Quantités disponibles mises à jour instantanément</li>
+        <li><strong>Responsive :</strong> Navigation adaptée mobile (menu hamburger)</li>
+        <li><strong>Loading states :</strong> Indicateurs de chargement (spinners, skeleton screens)</li>
+        <li><strong>Messages utilisateur :</strong> Toast notifications pour confirmations et erreurs</li>
+    </ul>
+    
+    <h2>4.2 Interfaces Logiciel/Logiciel</h2>
+    
+    <h3>4.2.1 Architecture globale des interfaces</h3>
+    <p>L'application suit une architecture <strong>REST API</strong> où le backend (Spring Boot) expose des endpoints consommés par le frontend (Angular).</p>
+    
+    <table>
+        <tr>
+            <th>Type d'interface</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><strong>APIs REST Backend/Frontend</strong></td>
+            <td>Communication JSON via HTTP/HTTPS (GET, POST, PUT, DELETE)</td>
+        </tr>
+        <tr>
+            <td><strong>Agrégateur de paiement</strong></td>
+            <td>Appels API pour générer liens de paiement, webhooks pour confirmations</td>
+        </tr>
+        <tr>
+            <td><strong>Authentification</strong></td>
+            <td>JWT + Cookie HTTP-only, validation sur chaque requête</td>
+        </tr>
+        <tr>
+            <td><strong>Stockage fichiers</strong></td>
+            <td>AWS S3 (ou équivalent) pour images produits et factures PDF</td>
+        </tr>
+        <tr>
+            <td><strong>Cache</strong></td>
+            <td>Redis pour sessions utilisateur et optimisations</td>
+        </tr>
+    </table>
+    
+    <h3>4.2.2 Endpoints REST API - Authentification</h3>
+    
+    <table>
+        <tr>
+            <th>Méthode</th>
+            <th>Endpoint</th>
+            <th>Description</th>
+            <th>Body/Params</th>
+            <th>Réponse</th>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/api/v1/auth/register</td>
+            <td>Inscription utilisateur</td>
+            <td>{"email", "password", "nom", "prenom"}</td>
+            <td>{"user_id", "jwt", "message"}</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/api/v1/auth/login</td>
+            <td>Connexion utilisateur</td>
+            <td>{"email", "password"}</td>
+            <td>{"jwt", "user", "message"}</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/api/v1/auth/logout</td>
+            <td>Déconnexion</td>
+            <td>Authorization: Bearer JWT</td>
+            <td>{"message": "Déconnexion réussie"}</td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/api/v1/auth/me</td>
+            <td>Récupérer profil utilisateur connecté</td>
+            <td>Authorization: Bearer JWT</td>
+            <td>{"user_id", "email", "nom", "role"}</td>
+        </tr>
+    </table>
+    
+    <h3>4.2.3 Endpoints REST API - Produits</h3>
+    
+    <table>
+        <tr>
+            <th>Méthode</th>
+            <th>Endpoint</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/api/v1/products</td>
+            <td>Lister produits (avec pagination, recherche, filtres)</td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/api/v1/products/{id}</td>
+            <td>Détails produit (avec avis)</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/api/v1/products</td>
+            <td>Créer produit (vendeur authentifié)</td>
+        </tr>
+        <tr>
+            <td>PUT</td>
+            <td>/api/v1/products/{id}</td>
+            <td>Modifier produit (vendeur authentifié)</td>
+        </tr>
+        <tr>
+            <td>DELETE</td>
+            <td>/api/v1/products/{id}</td>
+            <td>Supprimer produit (vendeur authentifié)</td>
+        </tr>
+    </table>
+    
+    <h3>4.2.4 Endpoints REST API - Panier et Commandes</h3>
+    
+    <table>
+        <tr>
+            <th>Méthode</th>
+            <th>Endpoint</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/api/v1/cart</td>
+            <td>Récupérer panier (utilisateur authentifié)</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/api/v1/cart/add</td>
+            <td>Ajouter au panier</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/api/v1/cart/remove</td>
+            <td>Retirer du panier</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/api/v1/orders</td>
+            <td>Créer une commande</td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/api/v1/orders</td>
+            <td>Lister commandes (utilisateur authentifié)</td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/api/v1/orders/{id}</td>
+            <td>Détails commande</td>
+        </tr>
+        <tr>
+            <td>PUT</td>
+            <td>/api/v1/orders/{id}/status</td>
+            <td>Changer statut commande (vendeur)</td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/api/v1/orders/{id}/invoice</td>
+            <td>Télécharger facture</td>
+        </tr>
+    </table>
+    
+    <h3>4.2.5 Endpoints REST API - Paiement</h3>
+    
+    <table>
+        <tr>
+            <th>Méthode</th>
+            <th>Endpoint</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/api/v1/payments/mobile-money</td>
+            <td>Initier paiement Mobile Money (génère lien agrégateur)</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/api/v1/payments/webhook</td>
+            <td>Webhook agrégateur (confirmation paiement)</td>
+        </tr>
+    </table>
+    
+    <h3>4.2.6 Endpoints REST API - Avis</h3>
+    
+    <table>
+        <tr>
+            <th>Méthode</th>
+            <th>Endpoint</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/api/v1/products/{id}/reviews</td>
+            <td>Lister avis d'un produit</td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>/api/v1/products/{id}/reviews</td>
+            <td>Laisser un avis</td>
+        </tr>
+        <tr>
+            <td>DELETE</td>
+            <td>/api/v1/reviews/{id}</td>
+            <td>Supprimer avis (vendeur)</td>
+        </tr>
+    </table>
+    
+    <h3>4.2.7 Endpoints REST API - Dashboard</h3>
+    
+    <table>
+        <tr>
+            <th>Méthode</th>
+            <th>Endpoint</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/api/v1/dashboard/stats</td>
+            <td>Statistiques dashboard (commandes, CA, etc.)</td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/api/v1/dashboard/recent-orders</td>
+            <td>Dernières commandes</td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/api/v1/dashboard/top-products</td>
+            <td>Produits les plus vendus</td>
+        </tr>
+    </table>
+    
+</div>
+
+<!-- SECTION 5 : TRAÇABILITÉ -->
+<div class="page-break">
+    <h1>5. TRAÇABILITÉ</h1>
+    
+    <h2>5.1 Matrice de traçabilité (Exigences → Fonctionnalités)</h2>
+    
+    <p>Cette section établit le lien entre les exigences métier identifiées et leur implémentation dans le logiciel.</p>
+    
+    <table>
+        <tr>
+            <th>ID Exigence</th>
+            <th>Description exigence</th>
+            <th>Type</th>
+            <th>Modules impactés</th>
+            <th>Statut</th>
+        </tr>
+        <tr>
+            <td>EXG-001</td>
+            <td>Permettre aux acheteurs de créer un compte</td>
+            <td>Fonctionnel</td>
+            <td>Authentification</td>
+            <td>À développer</td>
+        </tr>
+        <tr>
+            <td>EXG-002</td>
+            <td>Permettre la consultation du catalogue de produits</td>
+            <td>Fonctionnel</td>
+            <td>Catalogue, Recherche</td>
+            <td>À développer</td>
+        </tr>
+        <tr>
+            <td>EXG-003</td>
+            <td>Permettre l'ajout de produits au panier</td>
+            <td>Fonctionnel</td>
+            <td>Panier</td>
+            <td>À développer</td>
+        </tr>
+        <tr>
+            <td>EXG-004</td>
+            <td>Panier doit être persistant entre sessions</td>
+            <td>Technique/Fonctionnel</td>
+            <td>Panier, Cache</td>
+            <td>À développer</td>
+        </tr>
+        <tr>
+            <td>EXG-005</td>
+            <td>Afficher disponibilité en temps réel et empêcher commande si rupture</td>
+            <td>Fonctionnel</td>
+            <td>Panier, Commande, Stocks</td>
+            <td>À développer</td>
+        </tr>
+        <tr>
+            <td>EXG-006</td>
+            <td>Supporter deux modes de paiement : Mobile Money et Cash à la livraison</td>
+            <td>Fonctionnel</td>
+            <td>Paiement</td>
+            <td>À développer</td>
+        </tr>
+        <tr>
+            <td>EXG-007</td>
+            <td>Générer et permettre téléchargement de factures électroniques</td>
+            <td>Fonctionnel</td>
+            <td>Facturation</td>
+            <td>À développer</td>
+        </tr>
+        <tr>
+            <td>EXG-008</td>
+            <td>Permettre au vendeur de gérer son catalogue (CRUD)</td>
+            <td>Fonctionnel</td>
+            <td>Catalogue, Produits</td>
+            <td>À développer</td>
+        </tr>
+        <tr>
+            <td>EXG-009</td>
+            <td>Permettre au vendeur de suivre ses commandes</td>
+            <td>Fonctionnel</td>
+            <td>Gestion Commandes</td>
+            <td>À développer</td>
+        </tr>
+        <tr>
+            <td>EXG-010</td>
+            <td>Dashboard avec statistiques (CA, commandes)</td>
+            <td>Fonctionnel</td>
+            <td>Dashboard</td>
+            <td>À développer</td>
+        </tr>
+        <tr>
+            <td>EXG-011</td>
+            <td>Exporter données (commandes, clients)</td>
+            <td>Fonctionnel</td>
+            <td>Export (CSV/Excel)</td>
+            <td>À développer</td>
+        </tr>
+        <tr>
+            <td>EXG-012</td>
+            <td>Permettre avis et commentaires sur produits</td>
+            <td>Fonctionnel</td>
+            <td>Avis</td>
+            <td>À développer</td>
+        </tr>
+        <tr>
+            <td>EXG-013</td>
+            <td>Architecture scalable et modulaire pour évolution future</td>
+            <td>Technique</td>
+            <td>Tous</td>
+            <td>À développer</td>
+        </tr>
+        <tr>
+            <td>EXG-014</td>
+            <td>Sécurité : authentification JWT, chiffrement données sensibles</td>
+            <td>Technique</td>
+            <td>Authentification, Paiement</td>
+            <td>À développer</td>
+        </tr>
+        <tr>
+            <td>EXG-015</td>
+            <td>Déploiement sur AWS, infrastructure cloud</td>
+            <td>Technique</td>
+            <td>Infrastructure</td>
+            <td>À développer</td>
+        </tr>
+    </table>
+    
+    <h2>5.2 Priorités de développement (MVP Phase 1)</h2>
+    
+    <p><strong>Priorité 1 (CRITIQUE - Semaine 1) :</strong></p>
+    <ul>
+        <li>EXG-001 : Authentification acheteur et vendeur</li>
+        <li>EXG-002 : Catalogue produits (listage + détails)</li>
+        <li>EXG-003 : Panier (ajout/suppression)</li>
+        <li>EXG-004 : Persistance du panier</li>
+        <li>EXG-005 : Gestion stocks (disponibilité)</li>
+        <li>EXG-008 : CRUD produits (vendeur)</li>
+    </ul>
+    
+    <p><strong>Priorité 2 (IMPORTANT - Semaine 1-2) :</strong></p>
+    <ul>
+        <li>EXG-006 : Paiement (Mobile Money + Cash)</li>
+        <li>EXG-007 : Factures électroniques</li>
+        <li>EXG-009 : Suivi commandes</li>
+        <li>EXG-010 : Dashboard statistiques</li>
+    </ul>
+    
+    <p><strong>Priorité 3 (SOUHAITABLE - Semaine 2+) :</strong></p>
+    <ul>
+        <li>EXG-011 : Exports données</li>
+        <li>EXG-012 : Avis et commentaires</li>
+    </ul>
+    
+    <p><strong>Priorité 4 (POST-MVP) :</strong></p>
+    <ul>
+        <li>EXG-013 : Optimisations architecturales avancées</li>
+        <li>Recherche textuelle avancée</li>
+        <li>Recommandations produits</li>
+        <li>Notifications email</li>
+    </ul>
+    
+    <h2>5.3 Critères d'acceptation</h2>
+    
+    <p>Une fonctionnalité est considérée comme <strong>terminée</strong> si :</p>
+    <ul>
+        <li>✓ Le code est écrit, testé et poussé en git</li>
+        <li>✓ Les tests unitaires passent (coverage > 80% pour le critique)</li>
+        <li>✓ L'intégration backend/frontend fonctionne</li>
+        <li>✓ Pas de régressions sur les fonctionnalités existantes</li>
+        <li>✓ Le code respecte les conventions du projet</li>
+        <li>✓ La documentation (code, README) est à jour</li>
+    </ul>
+    
+</div>
+
+<!-- SECTION 6 : ANNEXES -->
+<div class="page-break">
+    <h1>ANNEXE A : Glossaire</h1>
+    
+    <table>
+        <tr>
+            <th>Terme</th>
+            <th>Définition</th>
+        </tr>
+        <tr>
+            <td><strong>Vendeur</strong></td>
+            <td>Propriétaire/administrateur de la boutique e-commerce</td>
+        </tr>
+        <tr>
+            <td><strong>Acheteur</strong></td>
+            <td>Client final qui achète les produits/services</td>
+        </tr>
+        <tr>
+            <td><strong>JWT</strong></td>
+            <td>JSON Web Token, standard d'authentification stateless</td>
+        </tr>
+        <tr>
+            <td><strong>REST API</strong></td>
+            <td>Architecture de communication client-serveur via HTTP</td>
+        </tr>
+        <tr>
+            <td><strong>ORM</strong></td>
+            <td>Object-Relational Mapping (JPA/Hibernate)</td>
+        </tr>
+        <tr>
+            <td><strong>Webhook</strong></td>
+            <td>Callback HTTP pour notifications d'événements externes</td>
+        </tr>
+        <tr>
+            <td><strong>Mobile Money</strong></td>
+            <td>Service de paiement mobile (Orange Money, MTN Money, etc.)</td>
+        </tr>
+        <tr>
+            <td><strong>Agrégateur de paiement</strong></td>
+            <td>Plateforme intermédiaire pour traiter les paiements (ex. Stripe, Flutterwave)</td>
+        </tr>
+        <tr>
+            <td><strong>Soft delete</strong></td>
+            <td>Suppression logique (marquage, non suppression physique)</td>
+        </tr>
+        <tr>
+            <td><strong>CORS</strong></td>
+            <td>Cross-Origin Resource Sharing, mécanisme de sécurité web</td>
+        </tr>
+        <tr>
+            <td><strong>S3</strong></td>
+            <td>Amazon Simple Storage Service pour fichiers cloud</td>
+        </tr>
+        <tr>
+            <td><strong>Template/Template e-commerce</strong></td>
+            <td>Modèle standardisé réutilisable pour créer des boutiques pour différents clients</td>
+        </tr>
+    </table>
+</div>
+
+<div class="page-break">
+    <h1>ANNEXE B : Modèles de données simplifiés</h1>
+    
+    <h3>Entité : Utilisateur</h3>
+    <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto;">
+User {
+  id: UUID (PK)
+  email: String (UNIQUE)
+  password: String (hashed)
+  nom: String
+  prenom: String
+  role: Enum (VENDEUR, ACHETEUR)
+  dateCreation: Timestamp
+  dateModification: Timestamp
+}</pre>
+    
+    <h3>Entité : Produit</h3>
+    <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto;">
+Product {
+  id: UUID (PK)
+  vendeurId: UUID (FK → User)
+  nom: String
+  description: String
+  prix: Decimal
+  stock: Integer
+  images: List[String] (URLs S3)
+  dateCreation: Timestamp
+  dateModification: Timestamp
+}</pre>
+    
+    <h3>Entité : Commande</h3>
+    <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto;">
+Order {
+  id: UUID (PK)
+  acheteurId: UUID (FK → User)
+  vendeurId: UUID (FK → User)
+  montantTotal: Decimal
+  statut: Enum (EN_ATTENTE, CONFIRMEE, LIVREE)
+  modePaiement: Enum (MOBILE_MONEY, CASH)
+  dateCreation: Timestamp
+  dateModification: Timestamp
+}</pre>
+    
+    <h3>Entité : Ligne de commande (OrderItem)</h3>
+    <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto;">
+OrderItem {
+  id: UUID (PK)
+  commandeId: UUID (FK → Order)
+  produitId: UUID (FK → Product)
+  quantite: Integer
+  prixUnitaire: Decimal
+  sousTotal: Decimal
+}</pre>
+    
+    <h3>Entité : Avis</h3>
+    <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto;">
+Review {
+  id: UUID (PK)
+  produitId: UUID (FK → Product)
+  utilisateurId: UUID (FK → User)
+  note: Integer (1-5)
+  commentaire: String (optional)
+  dateCreation: Timestamp
+}</pre>
+</div>
+
+<div>
+    <p style="text-align: center; color: #999; margin-top: 40px;">
+        <strong>Document de Spécification Logicielle - SellZone v1.0</strong><br/>
+        Novembre 2025<br/>
+        <em>Ce document constitue la référence pour le développement de l'application.</em>
+    </p>
+</div>
+
+</div>
+</body>
+</html>
