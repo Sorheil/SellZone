@@ -1,6 +1,8 @@
 import express from "express";
 import path from "path";
 import { clerkMiddleware } from "@clerk/express";
+import { functions, inngest } from "./config/ingest.js";
+import { serve } from "inngest/express";
 
 import { ENV } from "./config/env.js";
 import { connectDB } from "./config/db.js";
@@ -9,7 +11,15 @@ const app = express();
 
 const __dirname = path.resolve();
 
+//parse json request body
+app.use(express.json());
+
 app.use(clerkMiddleware());
+
+// Expose Inngest endpoint: this mounts all Inngest functions under /api/ingest.
+// Inngest will call this route to trigger our server-side functions
+// (e.g. reacting to Clerk events like user.created or user.deleted).
+app.use("/api/ingest", serve({ client: inngest, functions }));
 
 app.get("/api/health", (req, res) => {
 	res.status(200).json({ message: "Success" });
