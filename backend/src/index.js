@@ -19,7 +19,7 @@ app.use(clerkMiddleware());
 // Expose Inngest endpoint: this mounts all Inngest functions under /api/ingest.
 // Inngest will call this route to trigger our server-side functions
 // (e.g. reacting to Clerk events like user.created or user.deleted).
-app.use("/api/ingest", serve({ client: inngest, functions }));
+app.use("/api/inngest", serve({ client: inngest, functions }));
 
 app.get("/api/health", (req, res) => {
 	res.status(200).json({ message: "Success" });
