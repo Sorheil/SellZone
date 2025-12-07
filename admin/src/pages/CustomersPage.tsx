@@ -1,4 +1,3 @@
-import React from "react";
 
 function CustomersPage() {
 	return <div>CustomersPage</div>;
