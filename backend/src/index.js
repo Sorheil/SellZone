@@ -3,6 +3,7 @@ import path from "path";
 import { clerkMiddleware } from "@clerk/express";
 import { functions, inngest } from "./config/ingest.js";
 import { serve } from "inngest/express";
+import cors from "cors";
 
 import { ENV } from "./config/env.js";
 import { connectDB } from "./config/db.js";
@@ -10,6 +11,10 @@ import { connectDB } from "./config/db.js";
 //routes
 import adminRoutes from "./routes/admin.route.js";
 import userRoutes from "./routes/user.route.js";
+import orderRoutes from "./routes/order.route.js";
+import reviewRoutes from "./routes/review.route.js";
+import productRoutes from "./routes/product.route.js";
+import cartRoutes from "./routes/cart.route.js";
 
 const app = express();
 
@@ -17,8 +22,8 @@ const __dirname = path.resolve();
 
 //parse json request body
 app.use(express.json());
-
 app.use(clerkMiddleware());
+app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 
 // Expose Inngest endpoint: this mounts all Inngest functions under /api/ingest.
 // Inngest will call this route to trigger our server-side functions
@@ -31,6 +36,10 @@ app.get("/api/health", (req, res) => {
 
 app.use("/api/admin", adminRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/reviews", reviewRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/cart", cartRoutes);
 
 //make the app ready for the deployment
 if (ENV.NODE_ENV === "production") {
