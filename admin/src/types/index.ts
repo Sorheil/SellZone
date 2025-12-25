@@ -31,11 +31,11 @@ export interface Product {
 	name: string;
 	description: string;
 	price: number;
-	stock?: number;
+	stock: number;
 	category: string;
 	images: string[];
-	averageRating?: number;
-	totalReviews?: number;
+	averageRating: number;
+	totalReviews: number;
 	createdAt: Date;
 	updatedAt: Date;
 }
@@ -106,4 +106,8 @@ export interface DashboardStats {
 	totalOrders: number;
 	totalCustomers: number;
 	totalProducts: number;
+}
+
+export interface ErrorResponse {
+	message: string;
 }

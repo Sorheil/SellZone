@@ -1,5 +1,7 @@
-//import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 import { Routes, Route, Navigate } from "react-router";
+import { useAuth } from "@clerk/clerk-react";
+import PageLoader from "./components/PageLoader.tsx";
+
 //pages
 import LoginPage from "./pages/LoginPage.tsx";
 import DashboardPage from "./pages/DashboardPage.tsx";
@@ -7,9 +9,6 @@ import ProductsPage from "./pages/ProductsPage.tsx";
 import OrdersPage from "./pages/OrdersPage.tsx";
 import CustomersPage from "./pages/CustomersPage.tsx";
 import DashboardLayout from "./layouts/DashboardLayout.tsx";
-
-import { useAuth } from "@clerk/clerk-react";
-import PageLoader from "./components/PageLoader.tsx";
 
 export default function App() {
 	const { isSignedIn, isLoaded } = useAuth();

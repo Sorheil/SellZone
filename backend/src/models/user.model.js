@@ -10,18 +10,22 @@ const addressSchema = new mongoose.Schema({
 		required: true,
 	},
 	streetAddress: {
+		//Rue de la Liberté, Quartier Deido
 		type: String,
 		required: true,
 	},
 	city: {
+		//ville (ex: "Douala")
 		type: String,
 		required: true,
 	},
 	state: {
+		//région (ex: "Littoral")
 		type: String,
 		required: true,
 	},
 	zipCode: {
+		// code postal (ex: "75001", "69000")
 		type: String,
 		required: true,
 	},
@@ -37,15 +41,16 @@ const addressSchema = new mongoose.Schema({
 
 const userSchema = new mongoose.Schema(
 	{
+		name: {
+			type: String,
+			required: true,
+		},
 		email: {
 			type: String,
 			required: true,
 			unique: true,
 		},
-		name: {
-			type: String,
-			required: true,
-		},
+
 		imageUrl: {
 			type: String,
 			default: "",

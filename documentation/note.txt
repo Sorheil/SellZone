@@ -1,0 +1,5 @@
+1- est ce une bonne facon de mettre les categories des produits dans le frontend faudrait t'il une validation cote backend ?
+2- faire de la validation de donnée robuste cote frontend et backend 
+3- est ce normal de definir une monnaie en dollar pour l'app
+4- regler l'erreur du nombre de fichier fixe a chaque upload
+5-trouver un moyen de changer individuelement les photos des produitsautant serveur que local, le tout dans l'ordre  

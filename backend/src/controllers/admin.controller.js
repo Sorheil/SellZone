@@ -47,7 +47,6 @@ export async function createProduct(req, res) {
 
 export async function getAllProducts(_, res) {
 	try {
-		// -1 means in desc order: most recent products first
 		const products = await Product.find().sort({ createdAt: -1 });
 		res.status(200).json(products);
 	} catch (error) {
@@ -98,6 +97,7 @@ export async function updateProduct(req, res) {
 
 export async function getAllOrders(_, res) {
 	try {
+		console.log("🔥 Fetching /orders");
 		const orders = await Order.find().populate("user", "name email").populate("orderItems.product").sort({ createdAt: -1 });
 
 		res.status(200).json({ orders });

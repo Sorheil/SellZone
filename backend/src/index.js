@@ -21,16 +21,17 @@ const app = express();
 const __dirname = path.resolve();
 
 //parse json request body
+app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
+
 app.use(express.json());
 app.use(clerkMiddleware());
-app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 
 // Expose Inngest endpoint: this mounts all Inngest functions under /api/ingest.
 // Inngest will call this route to trigger our server-side functions
 // (e.g. reacting to Clerk events like user.created or user.deleted).
 app.use("/api/inngest", serve({ client: inngest, functions }));
 
-app.get("/api/health", (req, res) => {
+app.get("/api/health", adminRoutes, (req, res) => {
 	res.status(200).json({ message: "Success" });
 });
 

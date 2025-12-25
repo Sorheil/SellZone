@@ -11,12 +11,12 @@ export const productApi = {
 		return data;
 	},
 
-	update: async ({ id, formData }: { id: number; formData: FormData }) => {
+	update: async ({ id, formData }: { id: string; formData: FormData }) => {
 		const { data } = await axiosInstance.put(`/admin/products/${id}`, formData);
 		return data;
 	},
 
-	delete: async (productId: number) => {
+	delete: async (productId: string) => {
 		const { data } = await axiosInstance.delete(`/admin/products/${productId}`);
 		return data;
 	},
