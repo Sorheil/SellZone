@@ -38,6 +38,7 @@ const productSchema = new mongoose.Schema(
       default: 0,
     },
     totalReviews: {
+      //avis total
       type: Number,
       default: 0,
     },

@@ -152,8 +152,6 @@ export async function getAllCustomers(_, res) {
 
 export async function getDashboardStats(_, res) {
 	try {
-		console.log("🔥 Fetching /stats");
-
 		const totalOrders = await Order.countDocuments();
 
 		const revenueResult = await Order.aggregate([

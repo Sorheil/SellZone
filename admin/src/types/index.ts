@@ -107,3 +107,7 @@ export interface DashboardStats {
 	totalCustomers: number;
 	totalProducts: number;
 }
+
+export interface ErrorResponse {
+	message: string;
+}

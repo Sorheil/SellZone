@@ -4,6 +4,8 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { productApi } from "../lib/api";
 import { getStockStatusBadge } from "../lib/utils";
 import type { Product } from "../types";
+import type { ErrorResponse } from "../types";
+import { AxiosError } from "axios";
 
 function ProductsPage() {
 	const [showModal, setShowModal] = useState(false);
@@ -37,9 +39,10 @@ function ProductsPage() {
 			closeModal();
 			queryClient.invalidateQueries({ queryKey: ["products"] });
 		},
-		onError: (error: any) => {
+		//AxiosError<ErrorResponse> ==> error.response.data to access message
+		onError: (error: AxiosError<ErrorResponse>) => {
 			console.error(error);
-			alert(error?.response?.data?.message || "Error creating product");
+			alert(error?.response?.data.message || "Error creating product");
 		},
 	});
 
@@ -278,6 +281,7 @@ function ProductsPage() {
 								<input
 									type="number"
 									step="0.01"
+									min="0"
 									placeholder="0.00"
 									className="input input-bordered"
 									value={formData.price}
@@ -293,6 +297,7 @@ function ProductsPage() {
 								<input
 									type="number"
 									placeholder="0"
+									min="0"
 									className="input input-bordered"
 									value={formData.stock}
 									onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
