@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { customerApi } from "../lib/api";
 import { formatDate } from "../lib/utils";
+import type { User } from "../types";
 
 function CustomersPage() {
   const { data, isLoading } = useQuery({
@@ -46,7 +47,7 @@ function CustomersPage() {
                 </thead>
 
                 <tbody>
-                  {customers.map((customer) => (
+                  {customers.map((customer:User) => (
                     <tr key={customer._id}>
                       <td className="flex items-center gap-3">
                         <div className="avatar placeholder">
