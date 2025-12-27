@@ -3,3 +3,14 @@
 3- est ce normal de definir une monnaie en dollar pour l'app
 4- regler l'erreur du nombre de fichier fixe a chaque upload
 5-trouver un moyen de changer individuelement les photos des produitsautant serveur que local, le tout dans l'ordre  
+6-comment separer les bases de donnée, ceux de develloppement et ceux de production pour ne pas les melanger 
+et meme en generale les deux voir trois(staging inclus) 
+7-quand est ce que je dois injecter des seeds dans mon application (environnement de test) 
+dans l'environnement de staging dois je ajouter  des vraie donnée, comment separer ces 3 environnements
+8-comprendre la difference entre le monitoring et l'observabilité , comparez sentry a d'autre solution. me conseille tu sentry a d'autre solution precisement a spring boot ?
+9-est ce normal de mettre le dsn de sentry dans le code de maniere brute 
+10-se definir un workflow de deploiement et de setup de projet 
+11- comprendre tout ces mots clé lié a sentry et au monitoring: (Error Monitoring Logs,Metrics,Session,Replay,Tracing)
+12-penser aux sendDefaultPii: true et la confidentialité(rgpd)
+13-comment utiliser son emulator dans un projet react native?
+14-se documenter sur safeAreaView 
